@@ -1,4 +1,4 @@
-console.log('hello')
+console.log(data.name)
 
 // You can start simple and just render a single
 // pokemon card from the first element
@@ -15,13 +15,16 @@ function createAndAppendPokemonCard(pokemonJSObject) {
 
   // create the HTML elements as defined in the template
 
-  const cardTitle = document.createElement('h2')
+  let cardTitle = document.createElement('h2')
   cardTitle.setAttribute('class', 'card--title')
   cardTitle.innerText = 'h2 text'
   card.appendChild(cardTitle)
 
   const sprite = document.createElement('img')
-  sprite.setAttribute('src', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png')
+  sprite.setAttribute(
+    'src',
+    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png'
+  )
   card.appendChild(sprite)
 
   const cardText = document.createElement('ul')
@@ -33,7 +36,7 @@ function createAndAppendPokemonCard(pokemonJSObject) {
   const HP = document.createElement('li')
   HP.innerText = 'HP: 45'
   cardText.appendChild(HP)
-  
+
   const Att = document.createElement('li')
   Att.innerText = 'ATTACK: 49'
   cardText.appendChild(Att)
@@ -59,7 +62,12 @@ function createAndAppendPokemonCard(pokemonJSObject) {
 
   // once the card <li> is created and fully built up
   // append it to the <ul>
+  for (let i = 0; i < data.length; i++) {
+    cardTitle.innerText = data[i].name
+    console.log(cardTitle)
+  }
 }
 
 // for loop, to go through each pokemon in `data`
+
 // and for each pokemon, call createAndAppendPokemonCard
