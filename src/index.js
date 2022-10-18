@@ -1,4 +1,4 @@
-console.log(data.name)
+console.log(data[0].name)
 
 // You can start simple and just render a single
 // pokemon card from the first element
@@ -6,7 +6,7 @@ console.log(data.name)
 
 // select the <ul> for placing pokemon cards
 
-function createAndAppendPokemonCard(pokemonJSObject) {
+function createAndAppendPokemonCard(index) {
   const cards = document.querySelector('.cards')
   const card = document.createElement('li')
   card.setAttribute('class', 'card')
@@ -17,56 +17,61 @@ function createAndAppendPokemonCard(pokemonJSObject) {
 
   let cardTitle = document.createElement('h2')
   cardTitle.setAttribute('class', 'card--title')
-  cardTitle.innerText = 'h2 text'
+  cardTitle.innerText = data[index].name
   card.appendChild(cardTitle)
 
-  const sprite = document.createElement('img')
+  let sprite = document.createElement('img')
   sprite.setAttribute(
     'src',
-    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png'
+    data[index].sprites.other["official-artwork"].front_default
   )
   card.appendChild(sprite)
 
-  const cardText = document.createElement('ul')
+  let cardText = document.createElement('ul')
   cardText.setAttribute('class', 'card--text')
   cardText.setAttribute('style', 'list-style:none')
   card.appendChild(cardText)
 
   // for (let i = 0; i < 6; i++) {}
-  const HP = document.createElement('li')
-  HP.innerText = 'HP: 45'
+  let HP = document.createElement('li')
+  HP.innerText = "HP: " + data[index].stats[0].base_stat
   cardText.appendChild(HP)
 
-  const Att = document.createElement('li')
-  Att.innerText = 'ATTACK: 49'
+  let Att = document.createElement('li')
+  Att.innerText = "ATTACK: " + data[index].stats[1].base_stat
   cardText.appendChild(Att)
 
-  const Def = document.createElement('li')
-  Def.innerText = 'DEFENSE: 49'
+  let Def = document.createElement('li')
+  Def.innerText = "DEFENSE: " + data[index].stats[2].base_stat
   cardText.appendChild(Def)
 
-  const spAtt = document.createElement('li')
-  spAtt.innerText = 'SPECIAL-ATTACK: 65'
+  let spAtt = document.createElement('li')
+  spAtt.innerText = "SPECIAL ATTACK: " + data[index].stats[3].base_stat
   cardText.appendChild(spAtt)
 
-  const spDef = document.createElement('li')
-  spDef.innerText = 'SPECIAL-DEFENSE: 65'
+  let spDef = document.createElement('li')
+  spDef.innerText = "SPECIAL DEFENSE: " + data[index].stats[4].base_stat
   cardText.appendChild(spDef)
 
-  const Speed = document.createElement('li')
-  Speed.innerText = 'SPEED: 45'
+  let Speed = document.createElement('li')
+  Speed.innerText = "SPEED: " + data[index].stats[5].base_stat
   cardText.appendChild(Speed)
-
-  // ensure I put the right attribute values: class, src, width
-  // ensure I append the right elements inside the correct ones
-
-  // once the card <li> is created and fully built up
-  // append it to the <ul>
-  for (let i = 0; i < data.length; i++) {
-    cardTitle.innerText = data[i].name
-    console.log(cardTitle)
-  }
 }
+// ensure I put the right attribute values: class, src, width
+// ensure I append the right elements inside the correct ones
+
+// once the card <li> is created and fully built up
+// append it to the <ul>
+
+for (let i = 0; i < data.length; i++) {
+  createAndAppendPokemonCard(i)
+  // cardTitle.innerText = data[i].name
+  // console.log(cardTitle.innerText)
+
+  // sprite = data[i].sprite
+}
+
+
 
 // for loop, to go through each pokemon in `data`
 
